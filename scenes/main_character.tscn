@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://lu26cgr1g78l"]
+
+[ext_resource type="Script" path="res://scripts/main_character.gd" id="1_edeoq"]
+[ext_resource type="PackedScene" uid="uid://d3omm4f41yxbv" path="res://scenes/sprint_bar.tscn" id="2_8v1b4"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0g1s2"]
+height = 1.8
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6fhgv"]
+height = 1.4
+
+[node name="mainCharacter" type="CharacterBody3D"]
+script = ExtResource("1_edeoq")
+
+[node name="mcHead" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4, 0)
+
+[node name="mcPOV" type="Camera3D" parent="mcHead"]
+
+[node name="headRay" type="RayCast3D" parent="mcHead"]
+target_position = Vector3(0, 1.5, 0)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="mcHead"]
+light_color = Color(0.489622, 0.489622, 0.489622, 1)
+spot_range = 50.0
+spot_attenuation = 1.6
+spot_angle = 65.0
+
+[node name="mcStandingCollision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+shape = SubResource("CapsuleShape3D_0g1s2")
+
+[node name="mcCrouchingCollision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
+shape = SubResource("CapsuleShape3D_6fhgv")
+
+[node name="sprintBar" parent="." instance=ExtResource("2_8v1b4")]
