@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cek3f0ins1lj2"]
+[gd_scene load_steps=8 format=3 uid="uid://cek3f0ins1lj2"]
 
 [ext_resource type="PackedScene" uid="uid://lu26cgr1g78l" path="res://scenes/main_character.tscn" id="1_n2gcp"]
 [ext_resource type="MeshLibrary" uid="uid://bt3bypjj5qfdw" path="res://assets/tileset/tileset.tres" id="3_wmb4q"]
@@ -19,10 +19,14 @@ sky = SubResource("Sky_musmq")
 tonemap_mode = 3
 fog_light_color = Color(0.0736142, 0.213948, 0.163075, 1)
 fog_light_energy = 1.65
-volumetric_fog_albedo = Color(0.671008, 0.26454, 0.257765, 1)
-volumetric_fog_emission_energy = 529.17
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0
 adjustment_enabled = true
-adjustment_brightness = 1.5
+
+[sub_resource type="FogMaterial" id="FogMaterial_13sbk"]
+density = 0.035
+albedo = Color(0.29219, 0.29219, 0.29219, 1)
+emission = Color(0.377919, 0.377919, 0.377919, 1)
 
 [node name="mainWorld" type="Node3D"]
 
@@ -47,6 +51,11 @@ shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="environment"]
 environment = SubResource("Environment_kdyt2")
+
+[node name="FogVolume" type="FogVolume" parent="environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.477055, 2.41792, 2.73459)
+size = Vector3(30, 5, 30)
+material = SubResource("FogMaterial_13sbk")
 
 [node name="Map" type="GridMap" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)

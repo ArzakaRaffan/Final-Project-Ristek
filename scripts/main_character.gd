@@ -40,9 +40,9 @@ func _physics_process(delta: float) -> void:
 			$mcHead/SpotLight3D.light_color = "#7d7d7d"
 			flashLightOn = false
 		else:
-			$mcHead/SpotLight3D.spot_range = 35
+			$mcHead/SpotLight3D.spot_range = 40
 			$mcHead/SpotLight3D.spot_angle = 50
-			$mcHead/SpotLight3D.spot_attenuation = 1.3
+			$mcHead/SpotLight3D.spot_attenuation = 1
 			$mcHead/SpotLight3D.light_color = "#c6c6c6"
 			flashLightOn = true
 	if Input.is_action_just_pressed("Exit"):
