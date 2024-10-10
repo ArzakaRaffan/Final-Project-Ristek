@@ -1,0 +1,61 @@
+[gd_scene load_steps=9 format=3 uid="uid://w5s2espjcy6r"]
+
+[ext_resource type="Script" path="res://scripts/demo_enemy.gd" id="1_l8y1q"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fyhht"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_j4ush"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ab04g"]
+albedo_color = Color(0, 0, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p8dn6"]
+albedo_color = Color(1, 0.761652, 0.896297, 1)
+emission_enabled = true
+emission = Color(1, 0.760784, 0.898039, 1)
+emission_energy_multiplier = 5.41
+
+[sub_resource type="SphereMesh" id="SphereMesh_sqrv5"]
+material = SubResource("StandardMaterial3D_p8dn6")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_vnxck"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_8qh6s"]
+
+[node name="DemoEnemy" type="CharacterBody3D"]
+script = ExtResource("1_l8y1q")
+
+[node name="CollisionShape3d" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_fyhht")
+
+[node name="MeshInstance3d" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_j4ush")
+surface_material_override/0 = SubResource("StandardMaterial3D_ab04g")
+
+[node name="Node3D" type="Node3D" parent="MeshInstance3d"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3d/Node3D"]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0.140206, 0.489024, -0.487826)
+mesh = SubResource("SphereMesh_sqrv5")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3d/Node3D"]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, -0.14, 0.489, -0.488)
+mesh = SubResource("SphereMesh_sqrv5")
+
+[node name="Navigate" type="NavigationAgent3D" parent="."]
+
+[node name="JumpScareArea" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="JumpScareArea"]
+transform = Transform3D(2.17, 0, 0, 0, 2.17, 0, 0, 0, 2.17, 0, 0, 0)
+shape = SubResource("SphereShape3D_vnxck")
+
+[node name="ChasingArea" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ChasingArea"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+shape = SubResource("SphereShape3D_8qh6s")
+
+[connection signal="body_entered" from="JumpScareArea" to="." method="_on_jump_scare_area_body_entered"]
+[connection signal="body_entered" from="ChasingArea" to="." method="_on_chasing_area_body_entered"]
+[connection signal="body_exited" from="ChasingArea" to="." method="_on_chasing_area_body_exited"]
