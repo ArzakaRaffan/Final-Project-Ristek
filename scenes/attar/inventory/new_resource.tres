@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="InventoryData" load_steps=3 format=3 uid="uid://b5wcie1ocjk3j"]
+
+[ext_resource type="Script" path="res://scripts/attar/inventory/inventory_data.gd" id="1_mxt2e"]
+[ext_resource type="Script" path="res://scripts/attar/inventory/slot_data.gd" id="2_1a7ib"]
+
+[resource]
+script = ExtResource("1_mxt2e")
+slot_datas = Array[ExtResource("2_1a7ib")]([null, null, null, null])

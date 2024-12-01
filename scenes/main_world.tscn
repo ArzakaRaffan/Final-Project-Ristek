@@ -1,8 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://cek3f0ins1lj2"]
+[gd_scene load_steps=18 format=3 uid="uid://cek3f0ins1lj2"]
 
 [ext_resource type="PackedScene" uid="uid://lu26cgr1g78l" path="res://scenes/main_character.tscn" id="1_n2gcp"]
+[ext_resource type="Resource" uid="uid://b5wcie1ocjk3j" path="res://scenes/attar/inventory/new_resource.tres" id="2_d0ivc"]
 [ext_resource type="PackedScene" uid="uid://w5s2espjcy6r" path="res://scenes/demo_enemy.tscn" id="3_l1dfx"]
 [ext_resource type="MeshLibrary" uid="uid://bt3bypjj5qfdw" path="res://assets/tileset/tileset.tres" id="3_wmb4q"]
+[ext_resource type="PackedScene" uid="uid://bwr1npbucd0cw" path="res://assets/item/pick_up.tscn" id="5_6umun"]
+[ext_resource type="Script" path="res://scripts/attar/item/item_data.gd" id="6_pufr8"]
+[ext_resource type="Script" path="res://scripts/attar/inventory/slot_data.gd" id="7_cgnty"]
+[ext_resource type="Texture2D" uid="uid://cdu5mlqpxn8x7" path="res://icon.svg" id="7_d0ckp"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2u4up"]
 sky_top_color = Color(0, 0, 0, 1)
@@ -33,10 +38,27 @@ polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 5), PackedInt32Arr
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_prlnf"]
 albedo_color = Color(0.259294, 0.259294, 0.259294, 1)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ywlq4"]
+atlas = ExtResource("7_d0ckp")
+
+[sub_resource type="Resource" id="Resource_pobgo"]
+script = ExtResource("6_pufr8")
+name = "Ini item A"
+description = "Test"
+stackable = false
+texture = SubResource("AtlasTexture_ywlq4")
+quantity = 30
+
+[sub_resource type="Resource" id="Resource_xgoa6"]
+script = ExtResource("7_cgnty")
+item_data = SubResource("Resource_pobgo")
+quantity = 30
+
 [node name="mainWorld" type="Node3D"]
 
 [node name="mainCharacter" parent="." instance=ExtResource("1_n2gcp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.1022, 1, 10.4068)
+inventory_data = ExtResource("2_d0ivc")
 
 [node name="environment" type="Node3D" parent="."]
 
@@ -80,3 +102,23 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.32587, 2.61407, 11.5149)
 
 [node name="EnemyDefaultPos" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3, 2.6, 11.5)
+
+[node name="PickUp" parent="." instance=ExtResource("5_6umun")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.2838, 2.14212, 2.22586)
+slot_data = SubResource("Resource_xgoa6")
+
+[node name="PickUp2" parent="." instance=ExtResource("5_6umun")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.1145, 2.68994, 2.22586)
+slot_data = SubResource("Resource_xgoa6")
+
+[node name="PickUp3" parent="." instance=ExtResource("5_6umun")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.1145, 2.44738, 4.17759)
+slot_data = SubResource("Resource_xgoa6")
+
+[node name="PickUp4" parent="." instance=ExtResource("5_6umun")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.3737, 2.20898, 4.17759)
+slot_data = SubResource("Resource_xgoa6")
+
+[node name="PickUp5" parent="." instance=ExtResource("5_6umun")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.3737, 2.04591, 5.51105)
+slot_data = SubResource("Resource_xgoa6")
