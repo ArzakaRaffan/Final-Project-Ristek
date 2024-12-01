@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://bwr1npbucd0cw"]
+
+[ext_resource type="Script" path="res://scripts/attar/item/pick_up.gd" id="1_xxs3s"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_dtqtj"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_tqdri"]
+
+[node name="PickUp" type="RigidBody3D"]
+collision_layer = 8
+script = ExtResource("1_xxs3s")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_dtqtj")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 8
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_dtqtj")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_tqdri")

@@ -1,7 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://lu26cgr1g78l"]
+[gd_scene load_steps=9 format=3 uid="uid://lu26cgr1g78l"]
 
 [ext_resource type="Script" path="res://scripts/main_character.gd" id="1_edeoq"]
 [ext_resource type="PackedScene" uid="uid://d3omm4f41yxbv" path="res://scenes/sprint_bar.tscn" id="2_8v1b4"]
+[ext_resource type="PackedScene" uid="uid://dumjn130no04y" path="res://scenes/attar/inventory/inventory.tscn" id="3_qrt60"]
+[ext_resource type="Texture2D" uid="uid://lx4iwbjp8dnw" path="res://assets/journal/full.png" id="4_pufur"]
+[ext_resource type="Script" path="res://scripts/attar/inventory/journal_interface.gd" id="4_uju3s"]
+[ext_resource type="FontFile" uid="uid://djri5l4xn71rx" path="res://assets/font/dogicapixel.ttf" id="6_iudyj"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0g1s2"]
 height = 1.8
@@ -26,6 +30,10 @@ spot_range = 50.0
 spot_attenuation = 1.6
 spot_angle = 65.0
 
+[node name="itemCast" type="RayCast3D" parent="mcHead"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+collision_mask = 8
+
 [node name="mcStandingCollision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 shape = SubResource("CapsuleShape3D_0g1s2")
@@ -35,3 +43,116 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
 shape = SubResource("CapsuleShape3D_6fhgv")
 
 [node name="sprintBar" parent="." instance=ExtResource("2_8v1b4")]
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="QuickInvenInterface" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="inventory" parent="UI/QuickInvenInterface" instance=ExtResource("3_qrt60")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -16.0
+offset_top = -32.0
+offset_right = 16.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="JournalInterface" type="Control" parent="UI"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_uju3s")
+
+[node name="Full" type="TextureRect" parent="UI/JournalInterface"]
+modulate = Color(0.741385, 0.741385, 0.741385, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -137.0
+offset_top = -91.0
+offset_right = 2423.0
+offset_bottom = 1509.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.1125, 0.1125)
+texture = ExtResource("4_pufur")
+stretch_mode = 5
+
+[node name="inventory" parent="UI/JournalInterface" instance=ExtResource("3_qrt60")]
+layout_mode = 0
+offset_left = 78.0
+offset_top = 61.0
+offset_right = 110.0
+offset_bottom = 93.0
+column = 2
+
+[node name="ItemName" type="Label" parent="UI/JournalInterface"]
+visible = false
+texture_filter = 1
+layout_mode = 0
+offset_left = 165.0
+offset_top = 33.0
+offset_right = 262.0
+offset_bottom = 46.0
+theme_override_fonts/font = ExtResource("6_iudyj")
+theme_override_font_sizes/font_size = 8
+text = "Key"
+autowrap_mode = 2
+
+[node name="Description" type="Label" parent="UI/JournalInterface"]
+visible = false
+texture_filter = 1
+layout_mode = 0
+offset_left = 165.0
+offset_top = 50.0
+offset_right = 262.0
+offset_bottom = 155.0
+theme_override_fonts/font = ExtResource("6_iudyj")
+theme_override_font_sizes/font_size = 7
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna. "
+autowrap_mode = 2
+
+[node name="InteractionLabel" type="Label" parent="UI"]
+visible = false
+texture_filter = 1
+offset_left = 207.0
+offset_top = 83.0
+offset_right = 285.0
+offset_bottom = 92.0
+theme_override_fonts/font = ExtResource("6_iudyj")
+theme_override_font_sizes/font_size = 7
+text = "E : pickup item"
+autowrap_mode = 2
+
+[node name="Inventory Alert" type="Label" parent="UI"]
+visible = false
+texture_filter = 1
+offset_left = 122.0
+offset_top = 138.0
+offset_right = 200.0
+offset_bottom = 147.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_iudyj")
+theme_override_font_sizes/font_size = 7
+text = "Inventory Full"
+horizontal_alignment = 1
+autowrap_mode = 2

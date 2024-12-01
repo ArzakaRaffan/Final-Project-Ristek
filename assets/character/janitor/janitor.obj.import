@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dd7t5tkknql4"
+path="res://.godot/imported/janitor.obj-7babf37b2c057f8aee0d041fb47e5aca.mesh"
+
+[deps]
+
+files=["res://.godot/imported/janitor.obj-7babf37b2c057f8aee0d041fb47e5aca.mesh"]
+
+source_file="res://assets/character/janitor/janitor.obj"
+dest_files=["res://.godot/imported/janitor.obj-7babf37b2c057f8aee0d041fb47e5aca.mesh", "res://.godot/imported/janitor.obj-7babf37b2c057f8aee0d041fb47e5aca.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false
