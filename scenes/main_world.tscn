@@ -45,7 +45,7 @@ atlas = ExtResource("7_d0ckp")
 script = ExtResource("6_pufr8")
 name = "Ini item A"
 description = "Test"
-stackable = false
+stackable = true
 texture = SubResource("AtlasTexture_ywlq4")
 quantity = 30
 
